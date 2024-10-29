@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import googleLogo from '../../assets/google_logo.jpg'
 function JobCard({ info }) {
     const CompanyLogo = styled('img')({
-        height: '95%',
+        height: '75%',
         marginLeft: '1em'
     })
     return <Box marginBottom={'1em'}>
@@ -11,7 +11,7 @@ function JobCard({ info }) {
             display: 'flex',
             paddingTop: '1em',
             height: '100px',
-            width: '400px',
+            bgcolor: 'white'
         }}>
             <CompanyLogo src={googleLogo} />
             <Box sx={{
