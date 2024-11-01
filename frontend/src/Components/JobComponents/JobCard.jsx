@@ -1,12 +1,15 @@
 import { Box, Divider } from '@mui/material';
 import { styled } from '@mui/system'
 import googleLogo from '../../assets/google_logo.jpg'
-function JobCard({ info }) {
+function JobCard({ info, jobDesc, setDrawer2 }) {
     const CompanyLogo = styled('img')({
         height: '75%',
         marginLeft: '1em'
     })
-    return <Box marginBottom={'1em'}>
+    return <Box marginBottom={'1em'} onClick={() => {
+        jobDesc.current = info;
+        setDrawer2(true);
+    }}>
         <Box sx={{
             display: 'flex',
             paddingTop: '1em',

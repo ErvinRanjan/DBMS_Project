@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Jobs from './Pages/JobPages/Jobs'
+import PostJobs from './Pages/JobPages/PostJobs';
+import JobApplicants from './Pages/JobPages/JobApplicants';
 
 const router = createBrowserRouter([
   {
@@ -13,7 +15,17 @@ const router = createBrowserRouter([
   // editing the same file there may be merge conflicts
   {
     path: 'jobs/',
-    element: <Jobs />,
+    element: <Jobs />
+  }
+  ,
+  {
+    path: 'postjobs/',
+    element: <PostJobs />
+  }
+  ,
+  {
+    path: 'applicants/',
+    element: <JobApplicants />
   }
 ]);
 
