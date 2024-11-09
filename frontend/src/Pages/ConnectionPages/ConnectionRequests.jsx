@@ -9,12 +9,14 @@ function ConnectionRequests() {
         lastName: 'Doe',
         requesterId: '1',
         status: false,
+        requesterImg: 'imgurl'
     }, {
         firstName: 'John',
         middleName: '',
         lastName: 'Doe',
         requesterId: '1',
         status: false,
+        requesterImg: 'imgurl'
     }]);
 
     document.body.style.backgroundColor = '#f8f4ec';

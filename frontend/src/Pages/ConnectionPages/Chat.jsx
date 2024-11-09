@@ -15,7 +15,8 @@ function Chat() {
         dateApplied: new Date('2024-10-31'),
         resume: 'resumeUrl',
         applicantDescription: 'string',
-        status: 0
+        status: 0,
+        profilePicture: 'imgurl'
     }]);
     const [connection, setConnection] = useState({
         applicantId: '1',
@@ -28,7 +29,8 @@ function Chat() {
         dateApplied: new Date('2024-10-31'),
         resume: 'resumeUrl',
         applicantDescription: 'string',
-        status: 0
+        status: 0,
+        profilePicture: 'imgurl'
     });
     const [messages, setMessages] = useState([{
         senderId: '2',
