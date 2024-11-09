@@ -1,6 +1,7 @@
 import { Box, Divider } from '@mui/material';
 import { styled } from '@mui/system'
 import googleLogo from '../../assets/google_logo.jpg'
+
 function JobCard({ info, jobDesc, setDrawer2 }) {
     const CompanyLogo = styled('img')({
         height: '75%',
@@ -14,7 +15,9 @@ function JobCard({ info, jobDesc, setDrawer2 }) {
             display: 'flex',
             paddingTop: '1em',
             height: '100px',
-            bgcolor: 'white'
+            bgcolor: 'white',
+            outline: '1px solid black',
+            borderRadius: '10%'
         }}>
             <CompanyLogo src={googleLogo} />
             <Box sx={{
@@ -29,7 +32,7 @@ function JobCard({ info, jobDesc, setDrawer2 }) {
                 <Box color={'gray'}>{info.location}</Box>
             </Box>
         </Box>
-        <Divider orientation={'horizontal'} flexItem sx={{ width: '100%', marginLeft: '1em', color: '#e3e2e1' }} />
+        <Divider orientation={'horizontal'} flexItem sx={{ width: '100%', color: '#e3e2e1' }} />
     </Box>
 }
 

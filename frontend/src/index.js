@@ -5,6 +5,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Jobs from './Pages/JobPages/Jobs'
 import PostJobs from './Pages/JobPages/PostJobs';
 import JobApplicants from './Pages/JobPages/JobApplicants';
+import Connections from './Pages/ConnectionPages/Connections';
+import ConnectionRequests from './Pages/ConnectionPages/ConnectionRequests';
+import Chat from './Pages/ConnectionPages/Chat'
 
 const router = createBrowserRouter([
   {
@@ -19,13 +22,25 @@ const router = createBrowserRouter([
   }
   ,
   {
-    path: 'postjobs/',
+    path: 'jobs/post/',
     element: <PostJobs />
   }
   ,
   {
-    path: 'applicants/',
+    path: 'jobs/applicants/',
     element: <JobApplicants />
+  },
+  {
+    path: 'connections/',
+    element: <Connections />,
+  },
+  {
+    path: 'connections/requests',
+    element: <ConnectionRequests />
+  },
+  {
+    path: 'connections/chat',
+    element: <Chat />
   }
 ]);
 

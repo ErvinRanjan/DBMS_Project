@@ -7,30 +7,30 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function JobDesc({ job, setDrawer2 }) {
     function getExperience() {
-        if (job.requiredExperience.intern) {
+        if (job.requiredExperience === 1) {
             return "Intern";
-        } else if (job.requiredExperience.early) {
+        } else if (job.requiredExperience === 2) {
             return "Early";
-        } else if (job.requiredExperience.mid) {
+        } else if (job.requiredExperience === 3) {
             return "Mid";
-        } else if (job.requiredExperience.advanced) {
+        } else if (job.requiredExperience === 4) {
             return "Advanced";
-        } else if (job.requiredExperience.director) {
+        } else if (job.requiredExperience === 5) {
             return "Director+";
         }
         return "No experience required";
     }
 
     function getDegree() {
-        if (job.reqDegree.pursuing) {
+        if (job.reqDegree === 1) {
             return "Pursuing Degree";
-        } else if (job.reqDegree.associate) {
+        } else if (job.reqDegree === 2) {
             return "Associate";
-        } else if (job.reqDegree.bachelors) {
+        } else if (job.reqDegree === 3) {
             return "Bachelors";
-        } else if (job.reqDegree.masters) {
+        } else if (job.reqDegree === 4) {
             return "Masters";
-        } else if (job.reqDegree.phd) {
+        } else if (job.reqDegree === 5) {
             return "Ph.D.";
         }
         return "No Degree required";

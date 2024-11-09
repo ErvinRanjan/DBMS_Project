@@ -5,68 +5,48 @@ import BookIcon from '@mui/icons-material/Book';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SchoolIcon from '@mui/icons-material/School';
 
-/*
- applicantId: '1',
-        name: 'Name',
-        skills: ['C++', 'Java'],
-        experience: {
-            intern: false,
-            early: false,
-            mid: false,
-            advanced: false,
-            director: false
-        },
-        degree: {
-            pursuing: false,
-            associate: false,
-            bachelors: false,
-            masters: false,
-            phd: false,
-        },
-        dateApplied: new Date('2024-10-31'),
-        resume: 'resumeUrl',
-        applicantDescription: 'string'*/
 
 function ApplicantCard({ applicant }) {
     function getExperience() {
-        if (applicant.experience.intern) {
+        if (applicant.requiredExperience === 1) {
             return "Intern";
-        } else if (applicant.experience.early) {
+        } else if (applicant.requiredExperience === 2) {
             return "Early";
-        } else if (applicant.experience.mid) {
+        } else if (applicant.requiredExperience === 3) {
             return "Mid";
-        } else if (applicant.experience.advanced) {
+        } else if (applicant.requiredExperience === 4) {
             return "Advanced";
-        } else if (applicant.experience.director) {
+        } else if (applicant.requiredExperience === 5) {
             return "Director+";
         }
-        return "No experience acquired";
+        return "No experience";
     }
 
     function getDegree() {
-        if (applicant.degree.pursuing) {
+        if (applicant.reqDegree === 1) {
             return "Pursuing Degree";
-        } else if (applicant.degree.associate) {
+        } else if (applicant.reqDegree === 2) {
             return "Associate";
-        } else if (applicant.degree.bachelors) {
+        } else if (applicant.reqDegree === 3) {
             return "Bachelors";
-        } else if (applicant.degree.masters) {
+        } else if (applicant.reqDegree === 4) {
             return "Masters";
-        } else if (applicant.degree.phd) {
+        } else if (applicant.reqDegree === 5) {
             return "Ph.D.";
         }
-        return "No degree acquired";
+        return "No Degree";
     }
+
     return <Box sx={{
         outline: '1px solid gray',
         padding: '1em',
         bgcolor: 'white',
-        width: '50%',
+        width: '100%',
         borderRadius: '10%',
     }}>
         <Box display='flex' gap='1em' alignItems='center'>
             <AccountCircleIcon />
-            <Typography sx={{ fontSize: '1.25em' }}>{applicant.name}</Typography>
+            <Typography sx={{ fontSize: '1.25em' }}>{applicant.firstName + " " + applicant.middleName + " " + applicant.lastName}</Typography>
         </Box>
         <Divider sx={{ marginTop: '0.5em', bgcolor: 'black' }} />
         <Box marginTop='1em'>
