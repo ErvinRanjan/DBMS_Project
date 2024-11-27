@@ -10,7 +10,9 @@ import OrgLogin from './Pages/OrgLogin';
 import OrgRegister from './Pages/OrgRegister';
 import UserEdit from './Pages/UserEdit';
 import UserPage from './Pages/Userpage';
+import OrgPage from './Pages/Orgpage';
 import { UserProvider } from './UserContext';
+import OrgEdit from './Pages/OrgEdit';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
   path:'UserPage/',
   element:<UserPage />
 
+ },
+ {
+  path:'OrgPage/',
+  element:<OrgPage/>
+ },
+ {
+  path:'OrgEdit/',
+  element:<OrgEdit/>
  }
   // you can add client-side-routes here, note that as we may be 
   // editing the same file there may be merge conflicts

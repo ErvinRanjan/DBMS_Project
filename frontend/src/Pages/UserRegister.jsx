@@ -19,8 +19,8 @@ export default function UserRegister()
           console.log("Passwords don't match");
         else
         {
-          const user={username:username,password:password};
-            login(user);
+          const userData={username:username,password:password};
+            login(userData);
             navigate('/UserEdit');
         }
     }
@@ -90,7 +90,7 @@ export default function UserRegister()
           fullWidth
          sx={{mb:4}}
         />
-             <Button onSubmit={handleChange} type="submit" variant="contained" color="primary" size="large"sx={{ mb:4 ,height:50,width:200}}>
+             <Button onClick={handleChange} type="submit" variant="contained" color="primary" size="large"sx={{ mb:4 ,height:50,width:200}}>
               Register
             </Button>
             <Box sx={{mb:2}}>

@@ -8,21 +8,23 @@ export default function OrgLogin()
     const [username,setusername]=useState("");
     const [password,setpassword]=useState("");
    const navigate=useNavigate();
-   const {login}=useUser();
+   const {logino,org}=useUser();
     function handleChange(event)
     {
         if(password<8)
           console.log("Password is weak");
         else
         {
-          const user={username:username,password:password};
-            login(user);
+          const userData={username:username,password:password};
+            logino(userData);
             navigate('/OrgPage');
         }
     }
     useEffect(()=>{
-      if(login!==null)
-        navigate('/OrgPage')
+      
+       if(org !== null)
+        navigate('/OrgPage');
+
     })
    return(
     
@@ -77,7 +79,7 @@ export default function OrgLogin()
 
         />
         
-             <Button onSubmit={handleChange} type="submit" variant="contained" color="primary" size="large"sx={{ mb:5 ,height:50,width:200}}>
+             <Button onClick={handleChange} type="submit" variant="contained" color="primary" size="large"sx={{ mb:5 ,height:50,width:200}}>
               Login
             </Button>
             <Box sx={{mb:2}}>

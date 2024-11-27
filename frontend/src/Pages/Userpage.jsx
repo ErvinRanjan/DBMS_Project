@@ -1,5 +1,5 @@
 import React ,{useState,useEffect}from 'react';
-import { Container, Typography,Stack,Paper,Avatar,IconButton,Toolbar,AppBar,Box,Popover,Button} from '@mui/material';
+import { Container, Typography,Stack,Paper,Avatar,IconButton,Toolbar,AppBar,Box,Popover,Button,List,Divider} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import EditIcon from '@mui/icons-material/Edit'
 import {Link,useNavigate} from "react-router-dom";
@@ -11,7 +11,7 @@ import { useUser } from '../UserContext';
 export default function UserPage()
 {
     const [anchorEl, setAnchorEl] = useState(null);
-    const {user,login,logout}=useUser();
+    const {user,info,login,logout}=useUser();
     const navigate=useNavigate();
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -27,19 +27,21 @@ export default function UserPage()
    
     useEffect(() => {
         if (user === null) {
+            console.log(user);
             navigate('/UserLogin');
         }
-    }, [user, navigate]);
+    },[user,navigate]);
     
-
+   
    return(
     <>
-    <Container sx={{minWidth:700}}>
+   
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="sticky" sx={{
         width: '100%',
           top: 0, 
         zIndex: 1000, 
+        height:60,
       }}>
         
       <Toolbar variant="dense" sx={{justifyContent:"space-between"}}>
@@ -64,7 +66,7 @@ export default function UserPage()
         > 
           <Stack direction="column" alignItems="center" justifyContent="center" spacing={1}>
           <Avatar sx={{ bgcolor: "blue"}}>KJ</Avatar>
-          <Button a href="/UserEdit">Edit Profile</Button>
+          <Button onClick={(e)=>{navigate('/UserEdit')}}>Edit Profile</Button>
           <Button onClick={logout} >Logout</Button>
           </Stack>
         
@@ -76,7 +78,7 @@ export default function UserPage()
     </AppBar>
 
   </Box>
-  </Container>
+  
     <Container
     maxWidth="md"
     sx={{
@@ -85,7 +87,7 @@ export default function UserPage()
         bgcolor: "gray",
         minHeight: "100vh",
         paddingTop: 4, 
-        transform:"translateY(5vh)",
+        
     }}
    >
     
@@ -100,9 +102,10 @@ export default function UserPage()
                 <Typography variant="h5">
                     {
                         <div>
-                        { user?.firstName + " " || ""}
-                        { user?.middleName + " " || ""}
-                        { user?.lastName + " " || ""}
+                        { info?.firstName + " " || ""}
+                        { info?.middleName + " " || ""}
+                        { info?.lastName + " " || ""}
+                        
                         </div>
                     }
                 </Typography>
@@ -119,7 +122,11 @@ export default function UserPage()
             About
            </Typography>
            <Typography sx={{padding:2}}>
-            Nil
+            {
+                <div>
+                 { info?.about&&info.about!==null? info.about : "Nothing here"}
+                 </div>
+            }
            </Typography>
         </Paper>
         
@@ -130,8 +137,24 @@ export default function UserPage()
            <Typography variant="h5" >
             Experience
            </Typography>
-           <Typography sx={{padding:2}}>
-            Nil
+           <Typography>
+           
+           {
+            info?.experience&&info.experience.length>0?(info.experience.map((e, index) => ( 
+            <Stack key={index} direction="row" >
+       <List sx={{padding:2}}>
+        {e.role} <br />
+        {e.company} <br />
+        {e.startDate.format('MMM D, YYYY')} - {e.endDate.format('MMM D, YYYY')} <br />
+        {e.location} 
+        <Divider component="li" sx={{width:"650px",mt:2}}/>
+      </List>
+     
+    </Stack>)
+  )):(<Typography sx={{padding:2}}>
+    Nothing here
+   </Typography>)
+   }
            </Typography>
         </Paper>
         
@@ -142,8 +165,23 @@ export default function UserPage()
            <Typography variant="h5" >
             Education
            </Typography>
-           <Typography sx={{padding:2}}>
-            Nothing here
+           <Typography >
+           {
+            info?.education&&info.education.length>0?(info.education.map((e, index) => ( 
+            <Stack key={index} direction="row" >
+       <List sx={{padding:2}}>
+        {e.school} <br />
+        {e.degree} <br />
+        {e.field} <br/>
+        {e.startDate.format('MMM D, YYYY')} - {e.endDate.format('MMM D, YYYY')} <br />
+        {e.grade}
+        <Divider component="li" sx={{width:"650px"}}/>
+      </List>
+     
+    </Stack>)
+  )):(<Typography sx={{padding:2}}>
+    Nothing here
+   </Typography>)}
            </Typography>
         </Paper>
         
@@ -154,8 +192,24 @@ export default function UserPage()
            <Typography variant="h5">
             Skills
            </Typography>
-           <Typography sx={{padding:2}}>
-            Nothing here
+           <Typography  sx={{mt:1}}>
+              {
+                      info?.skills&&info.skills.length>0?(info.skills.map((e,index) =>
+                      <Stack key={index} direction="row" spacing={5}>
+                        <List sx={{ fontSize: '1.2em' ,color:"black",padding:2}}>
+                            {e}
+                            <Divider component="li" sx={{width:"600px"}}/>
+                        </List> 
+                       
+                      </Stack>
+                      ))
+                      :(
+                      <Typography sx={{padding:2}}>
+                        Nothing here
+                        </Typography>)
+                      
+                }
+                
            </Typography>
         </Paper>
         

@@ -9,7 +9,7 @@ export default function OrgRegister()
     const [password,setpassword]=useState("");
     const [reenterpassword,setreenterpassword]=useState("");
     const navigate=useNavigate();
-    const {user,login}=useUser;
+    const { logino, org } = useUser();
     function handleChange(event)
     {
         if(password<8)
@@ -18,15 +18,18 @@ export default function OrgRegister()
           console.log("Passwords don't match");
         else
         {
-          const user={username:username,password:password};
-            login(user);
+          const userData={username:username,password:password};
+          console.log(userData);
+            logino(userData);
             navigate('/OrgEdit');
         }
     }
     useEffect(()=>{
-      if(user!==null)
-        navigate('/OrgPage')
+      
+      if(org!==null)
+        navigate('/OrgPage');
     })
+
    return(
     
     <Container
@@ -89,7 +92,7 @@ export default function OrgRegister()
           fullWidth
          sx={{mb:4}}
         />
-             <Button onSubmit={handleChange} type="submit" variant="contained" color="primary" size="large"sx={{ mb:5 ,height:50,width:200}}>
+             <Button onClick={(e)=>{handleChange(e)}} type="submit" variant="contained" color="primary" size="large"sx={{ mb:5 ,height:50,width:200}}>
               Register
             </Button>
             <Box sx={{mb:2}}>
