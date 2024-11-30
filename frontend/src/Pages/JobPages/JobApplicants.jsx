@@ -37,13 +37,13 @@ function JobApplicants() {
             </Drawer>
             <Box display='flex' justifyContent='center' marginTop='7em' width='100%' alignItems='center'>
                 <Box display='flex' flexDirection='column' alignItems='center' padding='1em' width='60%'>
-                    <Box alignSelf='flex-start' bgcolor='white' minWidth='300px' padding='0.75em' borderRadius='15%' outline='1px solid gray' marginBottom='1em' display={{ sm: 'flex', md: 'none' }} width='100%'>
+                    <Box alignSelf='flex-start' bgcolor='white' padding='0.75em' borderRadius='15%' outline='1px solid gray' marginBottom='1em' display={{ sm: 'flex', md: 'none' }} width='100%'>
                         <Button textDecoration='none' color='black' onClick={() => setDrawer(true)}>
                             <FilterListIcon />
                         </Button>
                     </Box>
                     <Box display='flex' gap='0.8em' width='100%'>
-                        <ApplicantFilter setDrawer={setDrawer} width='100%' display={{ sm: 'none', md: 'block' }} outline='1px solid black' />
+                        <ApplicantFilter setDrawer={setDrawer} width='100%' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} outline='1px solid black' />
                         <Box width='100%'>
                             {
                                 applicants.map(((applicant, index) =>

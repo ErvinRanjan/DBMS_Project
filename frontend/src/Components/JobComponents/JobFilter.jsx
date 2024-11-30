@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, TextField, FormCont
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useRef } from 'react';
 
-function JobFilter({ setDrawer, width, display }) {
+function JobFilter({ setDrawer, width, display, outline }) {
     const locations = useRef([]);
     const skills = useRef([]);
     const companies = useRef([]);
@@ -19,7 +19,7 @@ function JobFilter({ setDrawer, width, display }) {
         status.current = false;
     }
 
-    return <Box bgcolor='white' paddingBottom='1em' width={width} display={display} outline='1px solid black'>
+    return <Box bgcolor='white' paddingBottom='1em' width={width} display={display} outline={outline}>
         <Accordion sx={{ width: '100%' }} >
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />} sx={{ fontSize: '1.25em' }}>

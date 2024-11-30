@@ -40,7 +40,7 @@ function Jobs() {
     );
 
     const jobDesc2 = (
-        <JobDesc job={jobDesc.current} setDrawer2={setDrawer2} />
+        <JobDesc job={jobDesc.current} setDrawer2={setDrawer2} outline='none' />
     );
 
     return <Box bgcolor='#f8f4ec'>
@@ -62,7 +62,7 @@ function Jobs() {
                 </Button>
             </Box>
             <Box display='flex' width='100%' gap='1em'>
-                <JobFilter setDrawer={setDrawer} width='100%' display={{ xs: 'none', sm: 'block' }} />
+                <JobFilter setDrawer={setDrawer} width='100%' display={{ xs: 'none', sm: 'block' }} outline='1px solid black' />
                 <Box width='100%' minHeight='400px'>
                     {
                         jobs.map((job, index) => <JobCard info={job} key={index} jobDesc={jobDesc} setDrawer2={setDrawer2} />)

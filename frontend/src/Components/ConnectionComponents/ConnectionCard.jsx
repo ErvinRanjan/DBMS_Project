@@ -3,7 +3,7 @@ import googleLogo from '../../assets/google_logo.jpg'
 
 function ConnectionCard({ connection, message }) {
     const Image = styled('img')({
-        width: '25%',
+        width: '20%',
     });
 
     return <Box>

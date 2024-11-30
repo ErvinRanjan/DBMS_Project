@@ -10,11 +10,11 @@ function ConnectionRequestCard({ req }) {
     return <Box outline='1px solid black'>
         <Box display='flex' flexDirection='column' alignItems='center' gap='1em' bgcolor='white'>
             <Box display='flex' alignItems='center' padding='1em'>
-                <Image src={googleLogo} />=
+                <Image src={googleLogo} />
                 <Typography sx={{ marginLeft: '0.5em' }}>{req.firstName + " " + req.middleName + " " + req.lastName} wants to connect !</Typography>
                 <Box display='flex' gap='1em' marginLeft='auto'>
-                    <Button variant='contained'>Accept</Button>
-                    <Button variant='contained'>Ignore</Button>
+                    <Button variant='contained' sx={{ fontSize: '0.8' }}>Accept</Button>
+                    <Button variant='contained' sx={{ fontSize: '0.8em' }}>Ignore</Button>
                 </Box>
             </Box>
         </Box>
