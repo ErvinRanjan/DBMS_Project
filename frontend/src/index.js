@@ -13,6 +13,13 @@ import UserPage from './Pages/Userpage';
 import OrgPage from './Pages/Orgpage';
 import { UserProvider } from './UserContext';
 import OrgEdit from './Pages/OrgEdit';
+import Jobs from './Pages/JobPages/Jobs'
+import PostJobs from './Pages/JobPages/PostJobs';
+import JobApplicants from './Pages/JobPages/JobApplicants';
+import Connections from './Pages/ConnectionPages/Connections';
+import ConnectionRequests from './Pages/ConnectionPages/ConnectionRequests';
+import Chat from './Pages/ConnectionPages/Chat'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -54,6 +61,32 @@ const router = createBrowserRouter([
  }
   // you can add client-side-routes here, note that as we may be 
   // editing the same file there may be merge conflicts
+  {
+    path: 'jobs/',
+    element: <Jobs />
+  }
+  ,
+  {
+    path: 'jobs/post/',
+    element: <PostJobs />
+  }
+  ,
+  {
+    path: 'jobs/applicants/',
+    element: <JobApplicants />
+  },
+  {
+    path: 'connections/',
+    element: <Connections />,
+  },
+  {
+    path: 'connections/requests',
+    element: <ConnectionRequests />
+  },
+  {
+    path: 'connections/chat',
+    element: <Chat />
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
