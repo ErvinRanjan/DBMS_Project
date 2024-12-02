@@ -1,9 +1,10 @@
 import { Box, Button, Drawer, Divider } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import JobCard from '../../Components/JobComponents/JobCard.jsx'
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import JobDesc from './JobDesc';
 import JobFilter from '../../Components/JobComponents/JobFilter.jsx';
+import axios from 'axios';
 
 const sampleJobDesc = {
     jobId: '1',
@@ -27,6 +28,8 @@ const sampleJobDesc = {
 
 const sampleJobs = [sampleJobDesc]
 
+const jobsEndpoint = '';
+
 function Jobs() {
     const [drawer, setDrawer] = useState(false);
     const jobDesc = useRef(sampleJobDesc);
@@ -34,6 +37,12 @@ function Jobs() {
     const [jobs, setJobs] = useState(sampleJobs);
 
     document.body.style.backgroundColor = '#f8f4ec';
+
+    useEffect(async () => {
+        const res = await axios.get(jobsEndpoint);
+        const data = res.data;
+        setJobs(data);
+    }, []);
 
     const jobFilter = (
         <JobFilter setDrawer={setDrawer} width='100vw' />
@@ -62,7 +71,9 @@ function Jobs() {
                 </Button>
             </Box>
             <Box display='flex' width='100%' gap='1em'>
-                <JobFilter setDrawer={setDrawer} width='100%' display={{ xs: 'none', sm: 'block' }} outline='1px solid black' />
+                <JobFilter setDrawer={setDrawer} setJobs={setJobs} jobs={jobs} width='100%'
+                    display={{ xs: 'none', sm: 'block' }}
+                    outline='1px solid black' />
                 <Box width='100%' minHeight='400px'>
                     {
                         jobs.map((job, index) => <JobCard info={job} key={index} jobDesc={jobDesc} setDrawer2={setDrawer2} />)

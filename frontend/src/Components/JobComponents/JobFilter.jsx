@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, TextField, FormCont
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useRef } from 'react';
 
-function JobFilter({ setDrawer, width, display, outline }) {
+function JobFilter({ setDrawer, width, display, outline, setJobs, jobs }) {
     const locations = useRef([]);
     const skills = useRef([]);
     const companies = useRef([]);
@@ -110,7 +110,10 @@ function JobFilter({ setDrawer, width, display, outline }) {
             </AccordionDetails>
         </Accordion>
         <Box sx={{ marginLeft: '1em', marginTop: '5em' }}>
-            <Button variant='contained' onClick={() => { setDrawer(false); resetRefs(); }}>Filter</Button>
+            <Button variant='contained' onClick={() => {
+                setDrawer(false);
+                resetRefs();
+            }}>Filter</Button>
             <Button variant='contained' onClick={() => { setDrawer(false); resetRefs(); }} sx={{ marginLeft: '1em' }}>Reset</Button>
         </Box>
     </Box>;
