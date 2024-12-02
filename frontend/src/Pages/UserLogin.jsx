@@ -3,7 +3,7 @@ import React, {useState,useEffect} from 'react';
 import {Box,TextField,Container,Button, Typography} from '@mui/material';
 import {Link,useNavigate} from "react-router-dom";
 import {useUser}from '../UserContext'
-
+import { userloginRoute } from '../api/routes';
 export default function UserLogin()
 { const {user,login}=useUser();
     const [username,setusername]=useState("");
@@ -17,17 +17,32 @@ export default function UserLogin()
       }
     },[user,navigate]);
     
-    function handleChange()
+    async function handleChange()
     {
      if(username===""||password==="")
       console.log("Please fill the required fields");
      else if(password.length < 8)
       console.log("Password should be minimum of 8 characters");
     else{
-    
-      const userData={username:username,password:password};
-      console.log(userData);
-      login(userData);
+      try
+      {
+        const {data}=await axios.post(loginRoute,{username,password});
+        if(data.status===false)
+        {
+          console.log("failed");
+        }
+        else
+        {
+          const userData={username:username,password:password};
+          console.log(userData);
+          login(userData);
+        }
+      }
+      catch(err)
+      {
+        console.log("Error");
+      }
+      
         } 
     }
    

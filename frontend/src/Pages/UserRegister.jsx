@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react';
 import {Box,TextField,Container,Button, Typography} from '@mui/material';
 import {Link,useNavigate} from "react-router-dom";
 import {useUser} from "../UserContext";
+import { userregisterRoute } from '../api/routes';
 
 export default function UserRegister()
 {
@@ -11,7 +12,7 @@ export default function UserRegister()
     const [reenterpassword,setreenterpassword]=useState("");
     const navigate=useNavigate();
 
-    function handleChange(event)
+   async function handleChange(event)
     {
         if(password<8)
           console.log("Password is weak");
@@ -19,9 +20,24 @@ export default function UserRegister()
           console.log("Passwords don't match");
         else
         {
+          try
+          {
+            const {data}=await axios.post(userregisterRoute,{username,password});
+            if(data.status==false)
+            {
+              console.log("Cannot register");
+            }
+            else
+            {
           const userData={username:username,password:password};
             login(userData);
             navigate('/UserEdit');
+            }
+          }
+          catch(err)
+          {
+            console.log(err);
+          }
         }
     }
     useEffect(()=>{
