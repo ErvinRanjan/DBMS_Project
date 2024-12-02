@@ -1,67 +1,114 @@
 import { client } from '../../db.js';
-import { v4 as uuidv4 } from 'uuid';
 
-export async function retrieveJobs(req, res) {
+export function getAllJobs(req, res) {
     try {
-        const data = await client.query(`
-                SELECT * 
-                FROM jobs j
-                INNER JOIN location l  ON j.jobId = l.jobId
-                INNER JOIN skill s ON l.jobId = s.jobId
-                INNER JOIN minQual m ON s.jobId = m.jobId
-                INNER JOIN preQual p ON m.jobId = p.jobId
-                INNER JOIN respQual r ON p.jobId = r.jobId
-            `);
-        console.log(data);
-        res.status(200).send('jobs retrieved')
-        return data;
+        const data = [
+            {
+                jobId: '1',
+                title: 'Job',
+                location: ['kerala'],
+                requiredSkills: ['C++', 'Java'],
+                jobDescription: {
+                    minimumQualifications: ['a', 'b'],
+                    preferredQualifications: ['a', 'b'],
+                    about: '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>',
+                    responsibilities: ['a', 'b']
+                },
+                companyImg: 'imgurl',
+                companyName: 'someName',
+                requiredExperience: 3,
+                reqDegree: 1,
+                dateOfPost: new Date('2024-10-31'),
+                deadline: new Date('2024-10-31'),
+            },
+            {
+                jobId: '1',
+                title: 'Job',
+                location: ['kerala'],
+                requiredSkills: ['C++', 'Java'],
+                jobDescription: {
+                    minimumQualifications: ['a', 'b'],
+                    preferredQualifications: ['a', 'b'],
+                    about: '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>',
+                    responsibilities: ['a', 'b']
+                },
+                companyImg: 'imgurl',
+                companyName: 'someName',
+                requiredExperience: 1,
+                reqDegree: 1,
+                dateOfPost: new Date('2024-10-31'),
+                deadline: new Date('2024-10-31'),
+            },
+            {
+                jobId: '1',
+                title: 'Job',
+                location: ['kerala'],
+                requiredSkills: ['C++', 'Java'],
+                jobDescription: {
+                    minimumQualifications: ['a', 'b'],
+                    preferredQualifications: ['a', 'b'],
+                    about: '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>',
+                    responsibilities: ['a', 'b']
+                },
+                companyImg: 'imgurl',
+                companyName: 'someName',
+                requiredExperience: 1,
+                reqDegree: 1,
+                dateOfPost: new Date('2024-10-31'),
+                deadline: new Date('2024-10-31'),
+            }
+        ];
+        res.status(200).json(data);
     } catch (err) {
-        console.log("Error while retrieving jobs" + err);
-        res.status(500).send("Error while retrieving jobs" + err)''
+        res.status(500).send("Error: " + err);
     }
 }
 
-export async function addJob(req, res) {
+export function getApplicants(req, res) {
     try {
-        const job = req.body;
-        const jobId = uuidv4();
-        await client.query(`
-            INSERT INTO jobs(jobid,title,about,companyimg,companyname,requiredexperience,requireddegree,dateofpost,deadline)
-            VALUES (${jobId},${job.title},${job.about},${job.companyImg},${job.companyName},${job.requiredExperience},${job.requiredDegree},${job.dateOfPost},${job.deadline});
-        `)
-        job.location.map(async (location, index) => {
-            await client.query(`
-                INSERT INTO location(locationid,jobid,location)
-                VALUES (${index},${jobId},${location});
-            `)
-        })
-        job.minQual.map(async (minqual, index) => {
-            await client.query(`
-                INSERT INTO minqual(minqualid,jobid,minqual)
-                VALUES (${index},${jobId},${minqual});
-            `)
-        })
-        job.preQual.map(async (prequal, index) => {
-            await client.query(`
-                INSERT INTO prequal(prequalid,jobid,prequal)
-                VALUES (${index},${jobId},${prequal});
-            `)
-        })
-        job.requiredSkills.map(async (skill, index) => {
-            await client.query(`
-                INSERT INTO skill(skillid,jobid,skill)
-                VALUES (${index},${jobId},${skill});
-            `)
-        })
-        job.responsibilities.map(async (resp, index) => {
-            await client.query(`
-                INSERT INTO resp(respid,jobid,resp)
-                VALUES (${index},${jobId},${resp});
-            `)
-        })
-        res.status(200).send("added job");
+        const data = [
+            {
+                applicantId: '1',
+                firstName: 'John',
+                middleName: '',
+                lastName: 'Doe',
+                skills: ['c++', 'java'],
+                experience: 0,
+                degree: 0,
+                dateApplied: new Date('2024-10-31'),
+                resume: 'resumeUrl',
+                applicantDescription: 'string',
+                status: 'not recruited'
+            },
+            {
+                applicantId: '1',
+                firstName: 'John',
+                middleName: '',
+                lastName: 'Doe',
+                skills: ['java'],
+                experience: 0,
+                degree: 0,
+                dateApplied: new Date('2024-10-31'),
+                resume: 'resumeUrl',
+                applicantDescription: 'string',
+                status: 'not recruited'
+            },
+            {
+                applicantId: '1',
+                firstName: 'John',
+                middleName: '',
+                lastName: 'Doe',
+                skills: ['c++', 'java'],
+                experience: 0,
+                degree: 0,
+                dateApplied: new Date('2024-10-31'),
+                resume: 'resumeUrl',
+                applicantDescription: 'string',
+                status: 'not recruited'
+            }
+        ];
+        res.status(200).json(data);
     } catch (err) {
-        console.log("Error while inserting job: " + err);
-        res.status(500).send("Error while inserting job: " + err);
+        res.status(500).send("Error : " + err);
     }
 }

@@ -8,6 +8,7 @@ import { createPreQual } from './schema/jobSchema/preQualSchema.js';
 import { createResp } from './schema/jobSchema/respSchema.js';
 import { jobRouter } from './routes/jobRoutes/jobRoutes.js';
 import cors from 'cors';
+import { connectionRouter } from './routes/connectionRoutes/connectionRoutes.js';
 /*
 const jobDesc = useRef({
         jobId: '1',
@@ -50,6 +51,7 @@ const PORT = 5000;
 
 app.use(cors());
 app.use('/jobs', jobRouter);
+app.use('/connections', connectionRouter);
 
 app.listen(PORT, () => {
     console.log(`listening on PORT ${PORT}`);
