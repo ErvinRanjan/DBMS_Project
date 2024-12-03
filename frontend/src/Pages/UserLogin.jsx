@@ -1,9 +1,10 @@
 import React, {useState,useEffect} from 'react';
-
+import axios from 'axios'
 import {Box,TextField,Container,Button, Typography} from '@mui/material';
 import {Link,useNavigate} from "react-router-dom";
 import {useUser}from '../UserContext'
 import { userloginRoute } from '../api/routes';
+import { pickersArrowSwitcherClasses } from '@mui/x-date-pickers/internals';
 export default function UserLogin()
 { const {user,login}=useUser();
     const [username,setusername]=useState("");
@@ -25,13 +26,13 @@ export default function UserLogin()
      else if(password.length < 8)
       console.log("Password should be minimum of 8 characters");
     else{
-      try
+     /* try
        {
-        const { data } = await axios.post(userloginRoute, { emailId, password });
+        const { data } = await axios.post(userloginRoute, { username, password });
         if (data.token)
            {
             // Login successful
-            login({ emailId, token: data.token }); // Pass token to login function
+            login({ username, token: data.token }); // Pass token to login function
             navigate("/Userpage");
         } else {
             console.log("Login failed. Please check your credentials.");
@@ -40,6 +41,17 @@ export default function UserLogin()
         console.error("Error during login:", err);
         console.log("An error occurred during login. Please try again.");
     }
+}*/   if(username==="john_doe")
+{
+  login(username,password);
+  navigate('/UserPage1');
+
+}
+else
+{
+  login(username,password);
+  navigate('/UserPage2');
+}
 }
     }
    

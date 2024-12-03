@@ -8,11 +8,93 @@ import EmailIcon from '@mui/icons-material/Email';
 import WorkIcon from '@mui/icons-material/Work';
 import { useUser } from '../UserContext';
 
-export default function UserPage()
+export default function UserPage1()
 {
-  
+    const userinfo=[
+        {
+          "username": "john_doe",
+          "emailId": "john.doe@example.com",
+          "firstName": "John",
+          "middleName": "A",
+          "lastName": "Doe",
+          "password": "hashed_password_123",
+          "about": "A software developer with 5 years of experience.",
+          "experiences": [
+            {
+              "role": "Software Engineer",
+              "company": "TechCorp",
+              "startDate": "2019-06-01",
+              "endDate": "2021-06-01",
+              "location": "New York, NY"
+            },
+            {
+              "role": "Senior Developer",
+              "company": "Innovative Solutions",
+              "startDate": "2021-07-01",
+              "endDate": "2024-06-01",
+              "location": "San Francisco, CA"
+            }
+          ],
+          "educations": [
+            {
+              "school": "MIT",
+              "degree": "B.Sc. in Computer Science",
+              "field": "Computer Science",
+              "startDate": "2015-08-01",
+              "endDate": "2019-05-01",
+              "grade": 90
+            }
+          ],
+          "skills": [
+            "Python",
+            "JavaScript",
+            "React"
+          ]
+        },
+        {
+          "username": "jane_smith",
+          "emailId": "jane.smith@example.com",
+          "firstName": "Jane",
+          "middleName": "B",
+          "lastName": "Smith",
+          "password": "hashed_password_456",
+          "about": "A data scientist with expertise in machine learning.",
+          "experiences": [
+            {
+              "role": "Data Scientist",
+              "company": "DataTech",
+              "startDate": "2018-02-01",
+              "endDate": "2021-02-01",
+              "location": "Los Angeles, CA"
+            },
+            {
+              "role": "Lead Data Scientist",
+              "company": "AI Innovations",
+              "startDate": "2021-03-01",
+              "endDate": "Present",
+              "location": "Austin, TX"
+            }
+          ],
+          "educations": [
+            {
+              "school": "Stanford University",
+              "degree": "M.Sc. in Data Science",
+              "field": "Data Science",
+              "startDate": "2016-09-01",
+              "endDate": "2018-06-01",
+              "grade": 95
+            }
+          ],
+          "skills": [
+            "Machine Learning",
+            "R",
+            "TensorFlow"
+          ]
+        }
+      ]
+  const info=userinfo[0];
     const [anchorEl, setAnchorEl] = useState(null);
-    const {user,info,fetchProfile,login,logout}=useUser();
+    const {user,login,logout}=useUser();
     const navigate=useNavigate();
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -26,14 +108,14 @@ export default function UserPage()
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
    
-    useEffect(() => {
+   /* useEffect(() => {
         if (user === null) {
             console.log(user);
             navigate('/UserLogin');
         }
-      
+       
     },[user,navigate]);
-    
+    */
    
     
    return(
@@ -143,12 +225,12 @@ export default function UserPage()
            <Typography>
            
            {
-            info?.experience&&info.experience.length>0?(info.experience.map((e, index) => ( 
+            info?.experiences&&info.experiences.length>0?(info.experiences.map((e, index) => ( 
             <Stack key={index} direction="row" >
        <List sx={{padding:2}}>
         {e.role} <br />
         {e.company} <br />
-        {e.startDate.format('MMM D, YYYY')} - {e.endDate.format('MMM D, YYYY')} <br />
+        {e.startDate} - {e.endDate} <br />
         {e.location} 
         <Divider component="li" sx={{width:"650px",mt:2}}/>
       </List>
@@ -170,13 +252,13 @@ export default function UserPage()
            </Typography>
            <Typography >
            {
-            info?.education&&info.education.length>0?(info.education.map((e, index) => ( 
+            info?.educations&&info.educations.length>0?(info.educations.map((e, index) => ( 
             <Stack key={index} direction="row" >
        <List sx={{padding:2}}>
         {e.school} <br />
         {e.degree} <br />
         {e.field} <br/>
-        {e.startDate.format('MMM D, YYYY')} - {e.endDate.format('MMM D, YYYY')} <br />
+        {e.startDate} - {e.endDate} <br />
         {e.grade}
         <Divider component="li" sx={{width:"650px"}}/>
       </List>

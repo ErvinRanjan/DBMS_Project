@@ -26,7 +26,7 @@ export function UserProvider({ children })
             }));
       };
      
-      const fetchProfile = async (username) => {
+   /*   const fetchProfile = async (username) => {
         try {
             const token = localStorage.getItem('token'); // Get token from storage
             const response = await axios.get(`${process.env.BACKEND}/userpage`, {
@@ -40,9 +40,9 @@ export function UserProvider({ children })
             return null; // Return null if fetching fails
         }
     };
-
+*/
     return (
-        <UserContext.Provider value={{ user,info,org, login, logino, logout , addInfo, fetchProfile}}>
+        <UserContext.Provider value={{ user,info,org, login, logino, logout , addInfo}}>
             {children}
         </UserContext.Provider>
     );

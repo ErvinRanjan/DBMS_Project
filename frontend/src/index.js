@@ -19,7 +19,10 @@ import JobApplicants from './Pages/JobPages/JobApplicants';
 import Connections from './Pages/ConnectionPages/Connections';
 import ConnectionRequests from './Pages/ConnectionPages/ConnectionRequests';
 import Chat from './Pages/ConnectionPages/Chat'
-
+import UserPage1 from './Pages/UserPage1';
+import UserPage2 from './Pages/UserPage2';
+import OrgPage1 from './Pages/Orgpage1';
+import OrgPage2 from './Pages/Orgpage2';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -58,9 +61,25 @@ const router = createBrowserRouter([
  {
   path:'OrgEdit/',
   element:<OrgEdit/>
- }
+ },
   // you can add client-side-routes here, note that as we may be 
   // editing the same file there may be merge conflicts
+{
+ path:'UserPage1/',
+ element:<UserPage1/>
+  },
+  {
+    path:'UserPage2/',
+    element:<UserPage2/>
+     },
+     {
+      path:'OrgPage1/',
+      element:<OrgPage1/>
+       },
+       {
+        path:'OrgPage2/',
+        element:<OrgPage2/>
+         },
   {
     path: 'jobs/',
     element: <Jobs />

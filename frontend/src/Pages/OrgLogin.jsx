@@ -15,9 +15,14 @@ export default function OrgLogin()
           console.log("Password is weak");
         else
         {
+         
           const userData={username:username,password:password};
+
             logino(userData);
-            navigate('/OrgPage');
+            if(username==="contact@techcorp.com")
+            navigate('/OrgPage1');
+          else
+           navigate('/OrgPage2');
         }
     }
     useEffect(()=>{
