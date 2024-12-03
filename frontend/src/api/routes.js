@@ -1,2 +1,5 @@
-export const userloginRoute="http://localhost:5000/api/userlogin";
-export const userregisterRoute="http://localhost:5000/api/userReg";
+export const URL = process.env.backend;
+export const userloginRoute = `${URL}/userlogin`;
+export const userregisterRoute = `${URL}/api/userReg`;
+export const viewuser = `${URL}/api/user/:userId`;
+export const updateuser = `${URL}/api/update`;

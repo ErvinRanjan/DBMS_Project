@@ -15,6 +15,7 @@ export default function UserLogin()
         console.log(user);
         navigate('/Userpage');
       }
+      
     },[user,navigate]);
     
     async function handleChange()
@@ -25,25 +26,21 @@ export default function UserLogin()
       console.log("Password should be minimum of 8 characters");
     else{
       try
-      {
-        const {data}=await axios.post(loginRoute,{username,password});
-        if(data.status===false)
-        {
-          console.log("failed");
+       {
+        const { data } = await axios.post(userloginRoute, { emailId, password });
+        if (data.token)
+           {
+            // Login successful
+            login({ emailId, token: data.token }); // Pass token to login function
+            navigate("/Userpage");
+        } else {
+            console.log("Login failed. Please check your credentials.");
         }
-        else
-        {
-          const userData={username:username,password:password};
-          console.log(userData);
-          login(userData);
-        }
-      }
-      catch(err)
-      {
-        console.log("Error");
-      }
-      
-        } 
+    } catch (err) {
+        console.error("Error during login:", err);
+        console.log("An error occurred during login. Please try again.");
+    }
+}
     }
    
    return(

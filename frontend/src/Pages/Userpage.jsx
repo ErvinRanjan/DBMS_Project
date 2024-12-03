@@ -1,4 +1,4 @@
-import React ,{useState,useEffect}from 'react';
+import React ,{useState,useEffect,useParams}from 'react';
 import { Container, Typography,Stack,Paper,Avatar,IconButton,Toolbar,AppBar,Box,Popover,Button,List,Divider} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import EditIcon from '@mui/icons-material/Edit'
@@ -10,8 +10,9 @@ import { useUser } from '../UserContext';
 
 export default function UserPage()
 {
+  const { username } = useParams();
     const [anchorEl, setAnchorEl] = useState(null);
-    const {user,info,login,logout}=useUser();
+    const {user,info,fetchProfile,login,logout}=useUser();
     const navigate=useNavigate();
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -30,9 +31,14 @@ export default function UserPage()
             console.log(user);
             navigate('/UserLogin');
         }
-    },[user,navigate]);
+        else
+        {
+          fetchProfile(username);
+        }
+    },[user,navigate,fetchProfile]);
     
    
+    
    return(
     <>
    
